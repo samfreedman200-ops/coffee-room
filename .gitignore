@@ -40,8 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local sqlite database
-/data
+# SQLite transient files (WAL + shared-memory). The main DB ships in the
+# repo so anyone cloning gets the sample seed data without re-running scripts.
+/data/*.db-wal
+/data/*.db-shm
 /backups
 
 # user-uploaded media (samples in /public/samples are committed)
