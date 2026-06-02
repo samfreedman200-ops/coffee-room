@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9d29d"/>
+      <stop offset="55%" stop-color="#e6a86b"/>
+      <stop offset="100%" stop-color="#6b3f1f"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.75" cy="0.32" r="0.18">
+      <stop offset="0%" stop-color="#fff3d8" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#fff3d8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g1)"/>
+  <rect width="1200" height="800" fill="url(#sun)"/>
+  <circle cx="900" cy="260" r="60" fill="#ffe9c1"/>
+  <g fill="#3b2410" opacity="0.7">
+    <ellipse cx="200" cy="700" rx="180" ry="22"/>
+    <ellipse cx="520" cy="730" rx="240" ry="28"/>
+    <ellipse cx="900" cy="710" rx="220" ry="24"/>
+  </g>
+  <g fill="#2a1808" opacity="0.85">
+    <polygon points="100,720 220,560 320,720"/>
+    <polygon points="280,720 400,540 520,720"/>
+    <polygon points="470,720 620,520 760,720"/>
+    <polygon points="700,720 830,580 940,720"/>
+    <polygon points="880,720 1020,570 1140,720"/>
+  </g>
+  <rect x="0" y="720" width="1200" height="80" fill="#1a0f06"/>
+</svg>

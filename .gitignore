@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local sqlite database
+/data
+/backups
+
+# user-uploaded media (samples in /public/samples are committed)
+/public/avatars
+/public/post-images
+
+# pm2 logs
+/logs
+
+# editor/OS
+.idea
+.vscode
+Thumbs.db
+

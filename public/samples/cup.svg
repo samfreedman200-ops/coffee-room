@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0e6d6"/>
+      <stop offset="100%" stop-color="#c9b89a"/>
+    </linearGradient>
+    <radialGradient id="cream" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#f5e7c8"/>
+      <stop offset="100%" stop-color="#8a5a2d"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="500" rx="320" ry="60" fill="#3b2410" opacity="0.18"/>
+  <circle cx="600" cy="420" r="240" fill="#fafafa" stroke="#dcd1bd" stroke-width="6"/>
+  <circle cx="600" cy="420" r="200" fill="url(#cream)"/>
+  <path d="M 460 360 C 540 320, 620 320, 700 360 C 660 400, 580 400, 540 380 C 520 370, 480 380, 460 360 Z" fill="#fff6e0" opacity="0.85"/>
+  <path d="M 480 440 C 540 410, 600 410, 680 430 C 640 460, 580 460, 540 450 Z" fill="#fff6e0" opacity="0.7"/>
+  <g stroke="#dcd1bd" stroke-width="4" fill="none">
+    <path d="M 840 400 C 920 380, 960 460, 880 480"/>
+  </g>
+  <g fill="#7a5a3a" opacity="0.55">
+    <circle cx="280" cy="160" r="20"/>
+    <circle cx="320" cy="200" r="14"/>
+    <circle cx="900" cy="180" r="18"/>
+    <circle cx="940" cy="220" r="12"/>
+  </g>
+</svg>

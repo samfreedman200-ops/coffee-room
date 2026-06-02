@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a2a1a"/>
+      <stop offset="100%" stop-color="#1d140a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#desk)"/>
+  <rect x="120" y="120" width="800" height="600" rx="8" fill="#f6efe1" stroke="#c8b896" stroke-width="4" transform="rotate(-3 520 420)"/>
+  <g stroke="#b8a486" stroke-width="2" opacity="0.7" transform="rotate(-3 520 420)">
+    <line x1="180" y1="220" x2="860" y2="220"/>
+    <line x1="180" y1="270" x2="860" y2="270"/>
+    <line x1="180" y1="320" x2="860" y2="320"/>
+    <line x1="180" y1="370" x2="860" y2="370"/>
+    <line x1="180" y1="420" x2="860" y2="420"/>
+    <line x1="180" y1="470" x2="860" y2="470"/>
+    <line x1="180" y1="520" x2="860" y2="520"/>
+    <line x1="180" y1="570" x2="860" y2="570"/>
+    <line x1="180" y1="620" x2="860" y2="620"/>
+  </g>
+  <g stroke="#2a1a0a" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.85" transform="rotate(-3 520 420)">
+    <path d="M 200 215 C 260 200, 320 230, 400 215 S 540 200, 600 215"/>
+    <path d="M 200 265 C 280 250, 360 280, 450 265"/>
+    <path d="M 200 365 C 320 350, 460 380, 580 365 S 720 350, 800 365"/>
+    <path d="M 200 415 C 280 405, 380 430, 460 415"/>
+    <path d="M 200 515 C 290 500, 400 530, 510 515 S 660 500, 740 515"/>
+  </g>
+  <rect x="940" y="540" width="180" height="40" rx="6" fill="#1a0f06" transform="rotate(8 1030 560)"/>
+  <rect x="940" y="540" width="40" height="40" rx="6" fill="#6b3f1f" transform="rotate(8 1030 560)"/>
+</svg>

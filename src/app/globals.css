@@ -1,26 +1,383 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * ROYAL NAVY · default
+ *
+ * Walls: deep royal navy. Cards: lifted royal navy. Text: warm parchment.
+ * Honey amber is the brass-fixture accent — italic punchlines, "mine" chip
+ * highlights, eyebrow labels. Buttons stay in the navy family for cohesion
+ * with the room, lifted with inset highlights + a subtle sky glow.
+ *
+ * Dark mode pushes deeper to a midnight navy with the same hierarchy intact.
+ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --background:     #0c1e44;     /* royal navy — the wall */
+  --background-2:   #081935;     /* deeper vignette pool   */
+  --card:           #14295c;     /* lifted navy — paper    */
+  --card-strong:    #1a3370;     /* nested surfaces        */
+  --foreground:     #ede2c5;     /* warm parchment text    */
+  --muted:          #8b9bbb;     /* dusty navy-cream       */
+  --line:           #1f3770;     /* navy hairline          */
+  --line-strong:    #2a4584;     /* stronger borders       */
+
+  /* Royal-navy button family (sits a notch above the page navy) */
+  --accent:         #2a4ab0;     /* royal mid              */
+  --accent-tinted:  #3a5fce;     /* gradient top           */
+  --accent-deep:    #1d3680;     /* gradient bottom        */
+  --accent-glow:    rgba(80, 130, 220, 0.45);
+  --accent-ring:    rgba(120, 165, 230, 0.30);
+
+  /* Honey amber — the warm beat */
+  --accent-soft:    #d5a268;
+  --accent-soft-tint: rgba(213, 162, 104, 0.18);
+
+  --radius-card:    14px;
+  --radius-pill:    9999px;
+  --radius-btn:     11px;
+  --ease-out:       cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-press:     cubic-bezier(0.4, 0, 0.6, 1);
+  --shadow-soft:    0 1px 0 rgba(0, 0, 0, 0.30),
+                    0 18px 50px -20px rgba(0, 0, 0, 0.55);
+  --shadow-hover:   0 1px 0 rgba(0, 0, 0, 0.36),
+                    0 26px 64px -22px rgba(0, 0, 0, 0.65);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background:     #050e26;
+    --background-2:   #020817;
+    --card:           #0d1d44;
+    --card-strong:    #142754;
+    --foreground:     #ede2c5;
+    --muted:          #7a8aaa;
+    --line:           #152a5a;
+    --line-strong:    #1f3672;
+    --accent:         #3a5fce;
+    --accent-tinted:  #4f78dd;
+    --accent-deep:    #28438f;
+    --accent-glow:    rgba(80, 130, 220, 0.55);
+    --accent-ring:    rgba(120, 165, 230, 0.32);
+    --accent-soft:    #d5a268;
+    --accent-soft-tint: rgba(213, 162, 104, 0.18);
+    --shadow-soft:    0 1px 0 rgba(0, 0, 0, 0.50),
+                      0 22px 60px -22px rgba(0, 0, 0, 0.80);
+    --shadow-hover:   0 1px 0 rgba(0, 0, 0, 0.56),
+                      0 30px 72px -24px rgba(0, 0, 0, 0.90);
   }
 }
 
-body {
+@theme inline {
+  --color-background:    var(--background);
+  --color-background-2:  var(--background-2);
+  --color-card:          var(--card);
+  --color-card-strong:   var(--card-strong);
+  --color-foreground:    var(--foreground);
+  --color-muted:         var(--muted);
+  --color-line:          var(--line);
+  --color-line-strong:   var(--line-strong);
+  --color-accent:        var(--accent);
+  --color-accent-soft:   var(--accent-soft);
+
+  --font-sans:    var(--font-geist-sans);
+  --font-mono:    var(--font-geist-mono);
+  --font-serif:   var(--font-crimson);
+  --font-display: var(--font-fraunces);
+}
+
+html, body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11", "kern", "liga";
+  /* Subtle radial wash to make the navy room feel "lit" rather than flat. */
+  background-image:
+    radial-gradient(
+      ellipse 70% 50% at 50% -5%,
+      color-mix(in oklab, var(--accent) 12%, transparent) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 110%,
+      var(--background-2) 0%,
+      transparent 55%
+    );
+  background-attachment: fixed;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent-soft) 60%, transparent);
+  color: var(--background);
+}
+
+/* Type roles ---------------------------------------------------------------- */
+
+.font-serif {
+  font-family: var(--font-serif), ui-serif, Georgia, "Times New Roman", serif;
+  font-feature-settings: "onum", "kern", "liga", "ss01";
+  letter-spacing: -0.012em;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, "Times New Roman", serif;
+  font-feature-settings: "onum", "kern", "liga", "ss01", "ss02";
+  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+.prose-serif {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-feature-settings: "onum", "kern", "liga", "ss01";
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--foreground);
+}
+.prose-serif p { margin-block: 0.95em; }
+.prose-serif p:first-child { margin-top: 0; }
+.prose-serif p:last-child  { margin-bottom: 0; }
+.prose-serif strong { color: var(--foreground); font-weight: 600; }
+.prose-serif em     { font-style: italic; color: color-mix(in oklab, var(--foreground) 92%, var(--accent-soft) 8%); }
+.prose-serif a {
+  color: var(--accent-soft);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.prose-serif a:hover {
+  color: color-mix(in oklab, var(--accent-soft) 80%, white 20%);
+}
+.prose-serif blockquote {
+  border-inline-start: 2px solid var(--accent-soft);
+  padding-inline-start: 1rem;
+  margin-inline: 0;
+  color: var(--muted);
+  font-style: italic;
+}
+.prose-serif h2,
+.prose-serif h3,
+.prose-serif h4 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.012em;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+*:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Cards --------------------------------------------------------------------- */
+
+.surface-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  transition:
+    box-shadow 240ms var(--ease-out),
+    transform 240ms var(--ease-out),
+    border-color 240ms var(--ease-out),
+    background 240ms var(--ease-out);
+}
+.surface-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--line-strong);
+  background: var(--card-strong);
+}
+
+/* Button system ------------------------------------------------------------- */
+
+/* Primary — lifted royal-navy gradient. Sits above the wall navy, lit with a
+   sky-blue outer glow + warm-cream inset highlight. */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.012em;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  background: linear-gradient(180deg, var(--accent-tinted) 0%, var(--accent-deep) 100%);
+  color: var(--foreground);
+  border: 1px solid color-mix(in oklab, var(--accent-tinted) 60%, var(--accent-deep) 40%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 210, 0.20),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 10px 28px -10px var(--accent-glow),
+    0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  transition:
+    background 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out),
+    transform 180ms var(--ease-press);
+}
+.btn-accent:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent-tinted) 80%, var(--accent-soft) 20%) 0%,
+    color-mix(in oklab, var(--accent-deep) 90%, var(--accent-soft) 10%) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 210, 0.30),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.30),
+    0 16px 40px -12px var(--accent-glow),
+    0 4px 14px -2px rgba(0, 0, 0, 0.40);
+  transform: translateY(-1px);
+}
+.btn-accent:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.30),
+    inset 0 -1px 0 rgba(255, 240, 210, 0.08),
+    0 5px 14px -6px var(--accent-glow);
+}
+
+/* Ghost — transparent over the navy wall. Fills with a navy tint on hover,
+   border + text shift to honey. */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.012em;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--line-strong);
+  transition:
+    background 220ms var(--ease-out),
+    color 220ms var(--ease-out),
+    border-color 220ms var(--ease-out),
+    transform 160ms var(--ease-press),
+    box-shadow 200ms var(--ease-out);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--card-strong);
+  border-color: var(--accent-soft);
+  color: var(--accent-soft);
+  box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.45);
+  transform: translateY(-1px);
+}
+.btn-ghost:active:not(:disabled) { transform: translateY(0); }
+
+/* Pill — small uppercase toggle, used for inline "follow". */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  background: transparent;
+  color: var(--accent-soft);
+  border: 1px solid var(--accent-soft);
+  transition:
+    background 200ms var(--ease-out),
+    color 200ms var(--ease-out),
+    border-color 200ms var(--ease-out),
+    transform 160ms var(--ease-press);
+}
+.btn-pill:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--background);
+  transform: translateY(-1px);
+}
+.btn-pill.is-active {
+  background: var(--accent-soft-tint);
+  color: var(--accent-soft);
+  border-color: color-mix(in oklab, var(--accent-soft) 50%, transparent);
+}
+
+/* Reaction chips — paper-thin border on navy, accent-soft glow when "mine". */
+.chip-react {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum";
+  background: var(--card);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition:
+    background 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    color 180ms var(--ease-out),
+    transform 140ms var(--ease-press),
+    box-shadow 200ms var(--ease-out);
+}
+.chip-react:hover {
+  border-color: var(--accent-soft);
+  color: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px -6px var(--accent-ring);
+}
+.chip-react.is-mine {
+  background: var(--accent-soft-tint);
+  border-color: color-mix(in oklab, var(--accent-soft) 50%, transparent);
+  color: var(--accent-soft);
+  box-shadow: 0 0 0 3px rgba(213, 162, 104, 0.18);
+}
+
+/* Inputs -------------------------------------------------------------------- */
+
+.input,
+.input-sm {
+  font-family: var(--font-sans);
+  background: var(--background-2);
+  color: var(--foreground);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  width: 100%;
+  transition: border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+.input-sm { padding: 0.4rem 0.65rem; font-size: 0.875rem; }
+.input:focus,
+.input-sm:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  background: var(--card);
+}
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in oklab, var(--muted) 65%, transparent);
+}
+
+/* Form inputs in auth pages opt into the inset look explicitly with .input. */
